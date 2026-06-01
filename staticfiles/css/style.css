@@ -1,0 +1,306 @@
+/* =============================================
+   TodoApp - Custom Styles
+   ============================================= */
+
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --sidebar-width: 260px;
+  --transition: 0.2s ease;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* ─── Navbar ─── */
+.navbar-brand span {
+  color: var(--primary);
+}
+
+/* ─── Sidebar ─── */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  padding: 1.5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform var(--transition);
+}
+
+.sidebar .brand {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 0.5rem 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar .nav-link {
+  color: rgba(255, 255, 255, 0.75);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.2rem;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar .nav-section {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 1rem 0.75rem 0.3rem;
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* ─── Stat Cards ─── */
+.stat-card {
+  border: none;
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card .stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.25;
+  position: absolute;
+  right: 1rem;
+  bottom: 0.5rem;
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.stat-card p {
+  margin: 0;
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+
+.bg-primary-gradient { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+.bg-success-gradient { background: linear-gradient(135deg, #10b981, #059669); }
+.bg-warning-gradient { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.bg-danger-gradient  { background: linear-gradient(135deg, #ef4444, #dc2626); }
+
+/* ─── Todo Cards ─── */
+.todo-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.75rem;
+  background: #fff;
+  transition: all var(--transition);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.todo-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #c7d2fe;
+}
+
+.todo-card.completed {
+  opacity: 0.6;
+  background: #f9fafb;
+}
+
+.todo-card.completed .todo-title {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.todo-card .todo-title {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.2rem;
+}
+
+.todo-card .todo-meta {
+  font-size: 0.8rem;
+  color: #6b7280;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ─── Priority Badges ─── */
+.badge-high    { background-color: #fee2e2; color: #dc2626; }
+.badge-medium  { background-color: #fef3c7; color: #d97706; }
+.badge-low     { background-color: #d1fae5; color: #059669; }
+
+/* Priority left border */
+.border-high   { border-left: 4px solid #ef4444 !important; }
+.border-medium { border-left: 4px solid #f59e0b !important; }
+.border-low    { border-left: 4px solid #10b981 !important; }
+
+/* ─── Custom Checkbox ─── */
+.todo-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  background: transparent;
+}
+
+.todo-check:hover { border-color: var(--primary); }
+
+.todo-check.checked {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: #fff;
+}
+
+/* ─── Progress Bar ─── */
+.progress-slim {
+  height: 6px;
+  border-radius: 3px;
+}
+
+/* ─── Auth Pages ─── */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%);
+  padding: 1rem;
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.auth-logo {
+  font-size: 2.5rem;
+  color: var(--primary);
+}
+
+/* ─── Category Color Dot ─── */
+.category-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ─── Landing Page ─── */
+.hero-section {
+  background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* ─── Avatar Circle ─── */
+.avatar-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ─── Filter Bar ─── */
+.filter-bar {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Empty State ─── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #9ca3af;
+}
+
+.empty-state .empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.4;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
