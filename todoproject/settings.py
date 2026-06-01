@@ -101,3 +101,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'muafelix79@gmail.com'
 EMAIL_HOST_PASSWORD = 'voeh mcpa hlhs mfsd'
 DEFAULT_FROM_EMAIL = 'TodoApp <noreply@todoapp.local>'
+
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
