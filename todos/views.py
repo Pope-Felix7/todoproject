@@ -251,6 +251,9 @@ def change_password(request):
 # ...existing imports...
 from django.core.mail import send_mail  # Import send_mail
 
+from django.core.mail import send_mail
+from django.contrib import messages
+
 def register_view(request):
     if request.user.is_authenticated:
         return redirect('dashboard')
@@ -268,12 +271,14 @@ def register_view(request):
             # Send welcome email
             subject = "Welcome to TodoProject!"
             message = f"Hi {user.first_name or user.username},\n\nThank you for registering at TodoProject. Start organizing your tasks today!"
-            from_email = "noreply@todoproject.com"  # Replace with your email
+            from_email = "noreply@todoapp.local"
             recipient_list = [user.email]
             try:
                 send_mail(subject, message, from_email, recipient_list)
             except Exception as e:
                 messages.error(request, "Could not send welcome email. Please check your email configuration.")
+                # Log the error for debugging
+                print(f"Email error: {e}")
 
             return redirect('dashboard')
         else:
@@ -281,7 +286,6 @@ def register_view(request):
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
-
 
 @login_required
 def api_upcoming_deadlines(request):
