@@ -53,16 +53,26 @@ WSGI_APPLICATION = 'todoproject.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('POSTGRES_DB', 'todoproject_db'),  # Default database name
+#         'USER': os.getenv('POSTGRES_USER', 'your_db_user'),  # Default username
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'your_db_password'),  # Default password
+#         'HOST': os.getenv('POSTGRES_HOST', 'localhost'),  # Default host
+#         'PORT': os.getenv('POSTGRES_PORT', '5432'),  # Default port
+#     }
+# }
+
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'todoproject_db'),  # Default database name
-        'USER': os.getenv('POSTGRES_USER', 'your_db_user'),  # Default username
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'your_db_password'),  # Default password
-        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),  # Default host
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),  # Default port
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
+
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
