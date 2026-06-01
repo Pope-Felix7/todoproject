@@ -1,3 +1,5 @@
+from django.contrib.messages import constants as messages
+import dj_database_url
 from pathlib import Path
 import os
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -6,7 +8,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://muafelix.up.railway.app',  # Replace with your Railway app's domain
+]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -65,7 +69,6 @@ WSGI_APPLICATION = 'todoproject.wsgi.application'
 #     }
 # }
 
-import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -92,7 +95,6 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/login/'
 
-from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.DEBUG: 'secondary',
     messages.INFO: 'info',
