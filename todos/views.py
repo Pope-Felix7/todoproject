@@ -267,7 +267,7 @@ def register_view(request):
             Category.objects.create(user=user, name='Shopping', color='#f59e0b')
             login(request, user)
             messages.success(request, f"Welcome, {user.first_name or user.username}! Your account is ready.")
-
+            return redirect('dashboard')
             # Send welcome email
             subject = "Welcome to TodoProject!"
             message = f"Hi {user.first_name or user.username},\n\nThank you for registering at TodoProject. Start organizing your tasks today!"
@@ -280,7 +280,6 @@ def register_view(request):
                 # Log the error for debugging
                 print(f"Email error: {e}")
 
-            return redirect('dashboard')
         else:
             messages.error(request, "Please fix the errors below.")
     else:
