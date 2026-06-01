@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile – TodoApp{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="d-flex align-items-center mb-4 gap-2">
+      <a href="{% url 'profile' %}" class="btn btn-light btn-sm"><i class="bi bi-arrow-left"></i></a>
+      <h4 class="fw-bold mb-0">Edit Profile</h4>
+    </div>
+    <div class="card border-0 shadow-sm" style="border-radius: 16px;">
+      <div class="card-body p-4">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-6 mb-3">
+              <label class="form-label fw-semibold">First Name</label>
+              {{ form.first_name }}
+            </div>
+            <div class="col-6 mb-3">
+              <label class="form-label fw-semibold">Last Name</label>
+              {{ form.last_name }}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email Address</label>
+            {{ form.email }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Bio</label>
+            {{ form.bio }}
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Avatar Color</label>
+            <div class="d-flex align-items-center gap-3">
+              {{ form.avatar_color }}
+              <small class="text-muted">Pick a color for your avatar</small>
+            </div>
+          </div>
+          <div class="d-flex gap-2 justify-content-end">
+            <a href="{% url 'profile' %}" class="btn btn-light px-4">Cancel</a>
+            <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

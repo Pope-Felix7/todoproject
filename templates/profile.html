@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}My Profile – TodoApp{% endblock %}
+
+{% block content %}
+<div class="row">
+  <!-- Profile Card -->
+  <div class="col-md-4 mb-4">
+    <div class="card border-0 shadow-sm" style="border-radius: 16px;">
+      <div class="card-body p-4 text-center">
+        <div class="avatar-circle mx-auto mb-3"
+             style="background: {{ profile.avatar_color }};">
+          {{ user.first_name|slice:":1"|upper }}{{ user.last_name|slice:":1"|upper }}
+        </div>
+        <h5 class="fw-bold mb-0">
+          {% if user.first_name %}{{ user.get_full_name }}{% else %}{{ user.username }}{% endif %}
+        </h5>
+        <p class="text-muted small">@{{ user.username }}</p>
+        {% if user.email %}
+        <p class="text-muted small"><i class="bi bi-envelope me-1"></i>{{ user.email }}</p>
+        {% endif %}
+        {% if profile.bio %}
+        <p class="text-muted small border-top pt-3 mt-2">{{ profile.bio }}</p>
+        {% endif %}
+        <div class="d-grid gap-2 mt-3">
+          <a href="{% url 'edit_profile' %}" class="btn btn-primary btn-sm">
+            <i class="bi bi-pencil me-1"></i>Edit Profile
+          </a>
+          <a href="{% url 'change_password' %}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-shield-lock me-1"></i>Change Password
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="col-md-8">
+    <h5 class="fw-bold mb-3">My Statistics</h5>
+    <div class="row g-3 mb-4">
+      <div class="col-6">
+        <div class="card border-0 shadow-sm text-center p-3" style="border-radius: 12px;">
+          <h3 class="fw-bold text-primary">{{ total_todos }}</h3>
+          <small class="text-muted">Total Tasks</small>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card border-0 shadow-sm text-center p-3" style="border-radius: 12px;">
+          <h3 class="fw-bold text-success">{{ completed_todos }}</h3>
+          <small class="text-muted">Completed</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <h5 class="fw-bold mb-3">My Categories</h5>
+    {% if categories %}
+    <div class="card border-0 shadow-sm" style="border-radius: 12px;">
+      <div class="card-body p-0">
+        {% for cat in categories %}
+        <div class="d-flex align-items-center justify-content-between px-4 py-3
+                    {% if not forloop.last %}border-bottom{% endif %}">
+          <div class="d-flex align-items-center gap-2">
+            <span class="category-dot" style="background:{{ cat.color }};"></span>
+            <span class="fw-semibold">{{ cat.name }}</span>
+          </div>
+          <span class="badge bg-light text-dark">{{ cat.todo_count }} tasks</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <p class="text-muted">No categories yet. Add one from the dashboard.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
